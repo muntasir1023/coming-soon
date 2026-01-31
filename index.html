@@ -113,11 +113,12 @@
         .coming-soon-text {
             font-family: 'Cinzel', serif;
             font-weight: 900;
-            font-size: clamp(3rem, 18vw, 16rem);
+            /* Reduced size from 18vw/16rem to 11vw/10rem to ensure it fits the screen width */
+            font-size: clamp(2rem, 11vw, 10rem);
             text-transform: uppercase;
             color: transparent;
             -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
-            letter-spacing: -2px;
+            letter-spacing: 2px;
             position: relative;
             white-space: nowrap;
             user-select: none;
