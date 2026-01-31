@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>VARENO Events BD | Coming Soon</title>
     
-    <!-- Fonts: Cinzel for the Logo feel, Inter for clean UI -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Fonts: Cinzel for the Logo feel, Inter for clean UI, Montserrat for Subtitles -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- GSAP & Lenis -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -41,114 +41,163 @@
             width: 100%;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100svh; 
+        /* --- GTA SCROLL EFFECT STYLES --- */
+        
+        /* The container that creates the scroll distance (4x screen height) */
+        #scroll-distancer {
+            height: 400vh;
+            position: relative;
+        }
+
+        /* The sticky wrapper that stays visible */
+        .sticky-viewport {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Background Media */
+        .bg-media {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .bg-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            /* Starting scale for parallax feel */
+            transform: scale(1.2); 
+        }
+
+        .overlay-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(8,8,8,0.8) 100%);
+        }
+
+        /* The Agency Name (Zoom Target) */
+        .agency-name {
+            position: absolute;
+            z-index: 10;
             width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            position: relative;
-            overflow: hidden;
+            justify-content: center;
+            pointer-events: none; /* Allows click-through */
         }
 
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            background: linear-gradient(to bottom, rgba(8,8,8,0.75), rgba(8,8,8,1)), 
-                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2000&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            z-index: -2;
-            will-change: transform;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 10;
-            padding: 0 20px;
-        }
-
-        .brand-logo-text {
+        .agency-name h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(3rem, 15vw, 10rem);
+            font-size: clamp(4rem, 15vw, 15rem);
             line-height: 1;
-            margin: 0;
-            text-transform: uppercase;
             color: var(--brand-gold);
             text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-            letter-spacing: 4px;
-        }
-
-        .brand-sub-text {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(0.7rem, 2.5vw, 1.2rem);
-            letter-spacing: clamp(5px, 2vw, 12px);
-            color: white;
-            text-transform: none; /* Changed to allow exact casing */
-            margin-top: 10px;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-
-        /* COMING SOON FOCUS SECTION */
-        .coming-soon-focus {
-            height: 50vh;
-            min-height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #000;
-            position: relative;
-            overflow: hidden;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            width: 100%;
-        }
-
-        .coming-soon-text {
-            font-family: 'Cinzel', serif;
-            font-weight: 900;
-            /* Reduced size from 18vw/16rem to 11vw/10rem to ensure it fits the screen width */
-            font-size: clamp(2rem, 11vw, 10rem);
-            text-transform: uppercase;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(212, 175, 55, 0.5);
-            letter-spacing: 2px;
-            position: relative;
+            margin: 0;
             white-space: nowrap;
-            user-select: none;
         }
 
-        .coming-soon-text::after {
-            content: "COMING SOON";
+        .agency-name h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 2rem);
+            letter-spacing: clamp(5px, 2vw, 15px);
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        /* Reveal Content (Countdown & Grand Opening) */
+        .reveal-content {
             position: absolute;
-            left: 0;
-            top: 0;
+            z-index: 20;
             width: 100%;
-            height: 100%;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; /* Hidden initially */
+            transform: translateY(50px);
+        }
+
+        .reveal-subtitle {
             color: var(--brand-gold);
-            clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-            animation: shine 6s infinite linear;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+            letter-spacing: 0.3em;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--brand-gold);
+            padding-bottom: 5px;
         }
 
-        @keyframes shine {
-            0% { clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%); }
-            20% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-            40% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
-            100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+        .reveal-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.1;
         }
 
-        /* Expertise Grid */
+        /* Countdown Grid */
+        .countdown-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: clamp(10px, 3vw, 30px);
+            margin-bottom: 50px;
+        }
+
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: clamp(15px, 3vw, 25px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: clamp(80px, 12vw, 130px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .glass-panel span.time {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            font-family: 'Inter', monospace;
+            color: var(--brand-gold);
+            line-height: 1;
+        }
+
+        .glass-panel span.label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        /* --- END GTA STYLES --- */
+
+
+        /* Expertise Grid (Existing Styles) */
         .expertise-section {
             padding: clamp(60px, 10vh, 120px) 5vw;
             background: #050505;
             text-align: center;
+            position: relative;
+            z-index: 5; /* Ensure it sits above the sticky bg if needed */
         }
 
         .expertise-title {
@@ -384,7 +433,6 @@
             letter-spacing: 1px;
         }
 
-        /* Performance Optimizations */
         @media (prefers-reduced-motion: reduce) {
             * { animation: none !important; transition: none !important; }
         }
@@ -397,23 +445,63 @@
 
     <div id="smooth-wrapper">
         <div id="smooth-content">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-bg" id="hero-bg"></div>
-                <div class="hero-content">
-                    <h1 class="brand-logo-text">VARENO</h1>
-                    <p class="brand-sub-text">Events BD</p>
-                    <div style="margin-top: clamp(30px, 6vh, 60px); font-size: 0.65rem; letter-spacing: 5px; opacity: 0.6; text-transform: uppercase;">
-                        Premium Event Management • Est. 2026
+            
+            <!-- 1. SCROLL DISTANCER (The GTA Logic) -->
+            <!-- This creates the scroll space needed for the zoom animation -->
+            <div id="scroll-distancer">
+                <div class="sticky-viewport">
+                    
+                    <!-- Background Media -->
+                    <!-- Using your image from the previous code -->
+                    <div class="bg-media">
+                        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2000&auto=format&fit=crop" alt="Luxury Background">
+                        <div class="overlay-gradient"></div>
+                    </div>
+
+                    <!-- The Agency Name (Zoom Target) -->
+                    <!-- This will scale up 200x -->
+                    <div class="agency-name">
+                        <h1>VARENO</h1>
+                        <h2>Events BD</h2>
+                    </div>
+
+                    <!-- The Reveal Content -->
+                    <!-- This fades in after the zoom -->
+                    <div class="reveal-content">
+                        <p class="reveal-subtitle">Redefining Elegance</p>
+                        <h2 class="reveal-title">GRAND OPENING</h2>
+
+                        <div class="countdown-grid" id="countdown-container">
+                            <!-- Days -->
+                            <div class="glass-panel">
+                                <span id="days" class="time">00</span>
+                                <span class="label">Days</span>
+                            </div>
+                            <!-- Hours -->
+                            <div class="glass-panel">
+                                <span id="hours" class="time">00</span>
+                                <span class="label">Hours</span>
+                            </div>
+                            <!-- Minutes -->
+                            <div class="glass-panel">
+                                <span id="minutes" class="time">00</span>
+                                <span class="label">Minutes</span>
+                            </div>
+                            <!-- Seconds -->
+                            <div class="glass-panel">
+                                <span id="seconds" class="time">00</span>
+                                <span class="label">Seconds</span>
+                            </div>
+                        </div>
+
+                        <div style="font-size: 0.7rem; letter-spacing: 4px; opacity: 0.6; text-transform: uppercase; margin-top: 20px;">
+                            Scroll to Explore
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
 
-            <!-- COMING SOON FOCUS -->
-            <section class="coming-soon-focus">
-                <h2 class="coming-soon-text">COMING SOON</h2>
-            </section>
-
+            <!-- 2. EXISTING CONTENT -->
             <!-- Expertise Section -->
             <section class="expertise-section">
                 <h2 class="expertise-title">Our Expertise</h2>
@@ -509,44 +597,79 @@
             lenis.scrollTo('#contact-section', { offset: 0, duration: 2 });
         }
 
-        // 2. GSAP Animations
+        // 2. COUNTDOWN TIMER LOGIC (June 1st, 2026)
+        const launchDate = new Date("June 1, 2026 00:00:00").getTime();
+
+        const timer = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                const container = document.getElementById("countdown-container");
+                if(container) container.innerHTML = "<h3 class='text-3xl gold-text'>WE ARE LIVE</h3>";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const dEl = document.getElementById("days");
+            const hEl = document.getElementById("hours");
+            const mEl = document.getElementById("minutes");
+            const sEl = document.getElementById("seconds");
+
+            if(dEl) dEl.innerText = days < 10 ? "0" + days : days;
+            if(hEl) hEl.innerText = hours < 10 ? "0" + hours : hours;
+            if(mEl) mEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+            if(sEl) sEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+        }, 1000);
+
+
+        // 3. GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Hero Parallax
-        gsap.to("#hero-bg", {
-            yPercent: 15,
-            ease: "none",
+        // === MASTER TIMELINE FOR HERO ===
+        const heroTl = gsap.timeline({
             scrollTrigger: {
-                trigger: ".hero",
+                trigger: "#scroll-distancer",
                 start: "top top",
-                end: "bottom top",
-                scrub: true
+                end: "bottom bottom",
+                scrub: 1.2, // Smooth scrub
             }
         });
 
-        // Logo Fade & Scale on Scroll
-        gsap.to(".hero-content", {
-            opacity: 0,
-            y: -80,
-            scale: 0.95,
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "center center",
-                end: "bottom center",
-                scrub: true
-            }
-        });
+        heroTl
+        // Phase 1: Zoom the Agency Name MASSIVELY (Fly through effect)
+        .to(".agency-name", { 
+            scale: 200, 
+            opacity: 0, 
+            ease: "power2.inOut", 
+            duration: 6 
+        })
+        
+        // Phase 2: Background settles (Parallax scale down)
+        // Starts at same time as zoom (<)
+        .to(".bg-media img", { 
+            scale: 1.0, 
+            opacity: 0.3, // Dim it slightly more for content readability
+            duration: 6, 
+            ease: "none" 
+        }, "<")
+        
+        // Phase 3: Reveal Content (Countdown)
+        // Starts 2 seconds before the end of the zoom (-=2)
+        .to(".reveal-content", { 
+            opacity: 1, 
+            y: 0, 
+            duration: 2.5, 
+            ease: "power2.out" 
+        }, "-=2");
 
-        // Coming Soon Text Scale Effect
-        gsap.from(".coming-soon-text", {
-            scale: 1.15,
-            scrollTrigger: {
-                trigger: ".coming-soon-focus",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 1
-            }
-        });
+
+        // === OTHER SECTIONS (Existing Logic) ===
 
         // Image Parallax Effect
         document.querySelectorAll(".inner-img").forEach(img => {
@@ -578,7 +701,7 @@
             });
         });
 
-        // Refresh ScrollTrigger on resize to handle orientation changes
+        // Refresh ScrollTrigger on resize
         window.addEventListener('resize', () => {
             ScrollTrigger.refresh();
         });
