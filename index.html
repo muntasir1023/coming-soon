@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/muntasir1023/eventsbdcomingsoon/main/f58df3c2-ee8d-4604-98c0-6550ea3e1a61-md.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/muntasir1023/eventsbdcomingsoon/main/f58df3c2-ee8d-4604-98c0-6550ea3e1a61-md.ico">
+    <!-- 
+      FAVICON FIX: 
+      The previous link was returning a 404. 
+      Ensure your GitHub repository is PUBLIC for these links to work.
+    -->
+    <link rel="icon" type="image/x-icon" href="https://muntasir1023.github.io/eventsbdcomingsoon/f58df3c2-ee8d-4604-98c0-6550ea3e1a61-md.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="https://muntasir1023.github.io/eventsbdcomingsoon/f58df3c2-ee8d-4604-98c0-6550ea3e1a61-md.ico">
+    <link rel="apple-touch-icon" href="https://muntasir1023.github.io/eventsbdcomingsoon/f58df3c2-ee8d-4604-98c0-6550ea3e1a61-md.ico">
     
     <!-- 1. SEO & Metadata -->
     <title>Vareno Events | Professional Event Management in Bangladesh</title>
@@ -91,7 +96,6 @@
             background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(8,8,8,0.9) 100%);
         }
 
-        /* Center Content (Logo & Title) */
         .hero-content-wrapper {
             position: relative;
             z-index: 10;
@@ -106,7 +110,6 @@
             margin-bottom: 120px;
         }
 
-        /* Highlighted Coming Soon Badge */
         .coming-soon-badge {
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid var(--brand-gold);
@@ -194,7 +197,7 @@
             color: white;
         }
 
-        /* Bottom Section (Countdown & Scroll) */
+        /* Countdown & Bottom */
         .hero-bottom-section {
             position: absolute;
             bottom: 0;
@@ -267,7 +270,6 @@
             60% {transform: translateY(-5px);}
         }
 
-        /* Services Grid */
         .expertise-section {
             padding: clamp(60px, 10vh, 120px) 5vw;
             background: #050505;
@@ -320,7 +322,6 @@
             line-height: 1.6;
         }
 
-        /* Parallax Sections */
         .parallax-section {
             padding: 10vh 5vw;
             display: flex;
@@ -444,7 +445,6 @@
 
         .socials a:hover { color: var(--brand-gold); }
 
-        /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 1024px) {
             .parallax-section, .parallax-section.reverse {
                 flex-direction: column;
@@ -481,7 +481,6 @@
     <div id="smooth-wrapper">
         <div id="smooth-content">
             
-            <!-- 1. HERO SECTION (Static) -->
             <section id="hero-section">
                 <div class="bg-media">
                     <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2000&auto=format&fit=crop" alt="Luxury Hall Hero">
@@ -529,7 +528,6 @@
                 </div>
             </section>
 
-            <!-- Expertise Section -->
             <section class="expertise-section">
                 <h2 class="expertise-title">Our Expertise</h2>
                 <div class="expertise-grid">
@@ -552,7 +550,6 @@
                 </div>
             </section>
 
-            <!-- Section 1: Wedding (Parallax) -->
             <section class="parallax-section">
                 <div class="image-frame">
                     <div class="inner-img" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000');" data-speed="-0.15"></div>
@@ -565,7 +562,6 @@
                 </div>
             </section>
 
-            <!-- Section 2: Corporate (Parallax) -->
             <section class="parallax-section reverse">
                 <div class="image-frame">
                     <div class="inner-img" style="background-image: url('https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2000&auto=format&fit=crop');" data-speed="0.12"></div>
@@ -578,7 +574,6 @@
                 </div>
             </section>
 
-            <!-- Footer -->
             <footer id="contact-section">
                 <div class="footer-logo">
                     <span class="gold">VARENO</span> EVENTS BD
@@ -634,7 +629,6 @@
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animate Hero Content on Load
         gsap.from(".hero-content-wrapper > *", {
             y: 30,
             opacity: 0,
@@ -644,7 +638,6 @@
             delay: 0.2
         });
 
-        // Parallax Section Images
         document.querySelectorAll(".inner-img").forEach(img => {
             const speed = parseFloat(img.getAttribute('data-speed'));
             gsap.to(img, {
@@ -659,7 +652,6 @@
             });
         });
 
-        // Staggered Fade Ins for other sections
         gsap.utils.toArray(".expertise-card, .content-box").forEach(el => {
             gsap.from(el, {
                 opacity: 0,
