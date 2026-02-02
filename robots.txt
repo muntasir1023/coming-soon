@@ -3,4 +3,4 @@ Allow: /
 
 Direct link to your sitemap
 
-Sitemap: https://www.google.com/search?q=https://varenoeventsbd.com/sitemap.xml
+Sitemap: https://wwww.google.com/search?q=https://varenoeventsbd.com/sitemap.xml
