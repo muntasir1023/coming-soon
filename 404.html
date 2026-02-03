@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Vareno Events</title>
+    <!-- Google Fonts for Elegance -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --text-dark: #2d2d2d;
+            --bg-light: #fffaf5;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow: hidden; /* Prevents scrollbars on a clean 404 */
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 600px;
+            position: relative;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Decorative Elements */
+        .decoration {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            margin: 0;
+            line-height: 1;
+            color: var(--primary-gold);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin: 10px 0 20px;
+            font-style: italic;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 35px;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--primary-gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn:hover {
+            background-color: #b08d4a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+        }
+
+        /* Flower Ornaments (SVG) */
+        .flower-icon {
+            width: 60px;
+            height: 60px;
+            fill: var(--primary-gold);
+            opacity: 0.6;
+        }
+
+        .footer-note {
+            margin-top: 50px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="decoration">
+            <!-- Simple Flower SVG -->
+            <svg class="flower-icon" viewBox="0 0 24 24">
+                <path d="M12,22C12,22 13,18 15,18C17,18 18,19 18,19C18,19 17,17 17,15C17,13 21,12 21,12C21,12 17,11 17,9C17,7 18,5 18,5C18,5 17,6 15,6C13,6 12,2 12,2C12,2 11,6 9,6C7,6 6,5 6,5C6,5 7,7 7,9C7,11 3,12 3,12C3,12 7,13 7,15C7,17 6,19 6,19C6,19 7,18 9,18C11,18 12,22 12,22Z" />
+            </svg>
+        </div>
+
+        <h1>404</h1>
+        <h2>Lost in the Celebration?</h2>
+        <p>
+            It seems the page you are looking for has been moved to another venue or never made the guest list. Don't worry, we'll help you find your way back to the main event.
+        </p>
+
+        <a href="https://varenoeventsbd.com" class="btn">RETURN TO HOME</a>
+
+        <div class="footer-note">
+            Vareno Events — Creating Timeless Memories
+        </div>
+    </div>
+
+</body>
+</html>
