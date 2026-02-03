@@ -45,21 +45,22 @@
             font-family: 'Cinzel', serif;
             font-weight: 700;
             letter-spacing: 2px;
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            white-space: nowrap;
         }
         .nav-brand .gold { color: var(--brand-gold); }
-        .nav-brand .white { color: var(--text-white); margin-left: 8px; font-size: 0.8em; letter-spacing: 4px; }
+        .nav-brand .white { color: var(--text-white); margin-left: 8px; font-size: 0.8em; letter-spacing: 2px; }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
         }
         .nav-links a {
             color: var(--text-white);
             text-decoration: none;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
             font-weight: 600;
             transition: color 0.3s;
         }
@@ -76,29 +77,6 @@
         .pulse-dot {width: 6px; height: 6px; background: var(--brand-gold); border-radius: 50%; animation: pulse 1.5s infinite;}
         @keyframes pulse {0% {transform: scale(1); opacity: 1;} 100% {transform: scale(2.5); opacity: 0;}}
         
-        .agency-name {margin-bottom: 20px; display: flex; flex-direction: column; align-items: center;}
-        .agency-name h1 {font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 8vw, 7rem); line-height: 1.1; margin: 0; white-space: nowrap;}
-        .agency-name h1 .gold {
-            color: var(--brand-gold);
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
-            background: linear-gradient(90deg, #D4AF37 0%, #F5E6A5 50%, #D4AF37 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
-        }
-        .agency-name h1 .white {
-            color: var(--text-white);
-            -webkit-text-fill-color: var(--text-white);
-            font-size: 0.45em;
-            letter-spacing: clamp(10px, 1.5vw, 20px);
-            display: block;
-            margin-top: 10px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
-        }
-        @keyframes shine {to {background-position: 200% center;}}
-
         .reveal-subtitle {color: var(--brand-gold); letter-spacing: 0.3em; font-size: clamp(0.7rem, 1.2vw, 0.9rem); text-transform: uppercase; margin-top: 30px; margin-bottom: 10px; border-bottom: 1px solid var(--brand-gold); padding-bottom: 5px; display: inline-block;}
         .reveal-title {font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 4rem); font-weight: 700; margin-bottom: 10px; text-align: center; line-height: 1.1; color: white;}
         .hero-bottom-section {position: absolute; bottom: 0; left: 0; width: 100%; padding-top: 40px; padding-bottom: clamp(20px, 4vh, 40px); z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);}
@@ -157,15 +135,16 @@
             .content-box h2 {font-size: 2.2rem;} 
             .content-box p {font-size: 0.95rem;} 
             .footer-logo-img {max-width: 100px;}
-            .nav-brand .white { display: none; } /* Hide white part on very small mobile nav for space */
+            /* Removed the display: none for nav brand white part to fix the "VARENo" issue */
+            .nav-brand .white { letter-spacing: 1px; margin-left: 4px; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-brand"><span class="gold">VARENO</span><span class="white">EVENTS BD</span></div>
+        <div class="nav-brand"><span class="gold">VARENO</span> <span class="white">EVENTS BD</span></div>
         <div class="nav-links">
-            <a href="about.html">About Us</a>
+            <a href="about.html">About</a>
         </div>
     </nav>
 
